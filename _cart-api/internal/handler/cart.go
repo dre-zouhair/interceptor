@@ -3,13 +3,14 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
+
 	"github.com/dre-zouhair/modules/cart-api/internal/repository"
 	"github.com/dre-zouhair/modules/cart-api/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
-	"net/http"
 )
 
 type cartHandler struct {

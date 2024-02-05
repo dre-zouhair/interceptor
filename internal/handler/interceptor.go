@@ -1,14 +1,15 @@
 package handler
 
 import (
-	"github.com/dre-zouhair/interceptor/config"
-	"github.com/dre-zouhair/interceptor/internal/processor"
-	"github.com/dre-zouhair/interceptor/internal/utils"
-	"github.com/rs/zerolog/log"
 	"io"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+
+	"github.com/dre-zouhair/interceptor/config"
+	"github.com/dre-zouhair/interceptor/internal/processor"
+	"github.com/dre-zouhair/interceptor/internal/utils"
+	"github.com/rs/zerolog/log"
 )
 
 type interceptorHandler struct {

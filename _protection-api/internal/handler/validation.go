@@ -3,11 +3,12 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
+
 	"github.com/dre-zouhair/modules/protection-api/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
-	"net/http"
 )
 
 type validationHandler struct {

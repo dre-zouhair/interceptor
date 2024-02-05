@@ -1,11 +1,12 @@
 package processor
 
 import (
+	"net/http"
+	"time"
+
 	"github.com/dre-zouhair/interceptor/config"
 	"github.com/dre-zouhair/interceptor/internal/builder"
 	"github.com/dre-zouhair/interceptor/internal/protectioncli"
-	"net/http"
-	"time"
 )
 
 type processorService struct {

@@ -1,10 +1,11 @@
 package builder
 
 import (
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 	"net/http"
 	"reflect"
 	"testing"
+
+	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 )
 
 func Test_concreteBuilder_BuildCookiesSignals(t *testing.T) {

@@ -2,9 +2,10 @@ package config
 
 import (
 	"errors"
+	"strings"
+
 	"github.com/dre-zouhair/interceptor/internal/utils"
 	"github.com/rs/zerolog/log"
-	"strings"
 )
 
 type Config struct {

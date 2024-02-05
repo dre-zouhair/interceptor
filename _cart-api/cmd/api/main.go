@@ -1,13 +1,14 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/dre-zouhair/modules/cart-api/config"
 	"github.com/dre-zouhair/modules/cart-api/internal/handler"
 	"github.com/dre-zouhair/modules/cart-api/internal/repository"
 	"github.com/dre-zouhair/modules/cart-api/internal/service"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
-	"net/http"
 )
 
 func main() {

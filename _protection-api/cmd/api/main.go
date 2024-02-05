@@ -1,13 +1,14 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/dre-zouhair/modules/protection-api/config"
 	"github.com/dre-zouhair/modules/protection-api/internal/handler"
 	"github.com/dre-zouhair/modules/protection-api/internal/middleware"
 	"github.com/dre-zouhair/modules/protection-api/internal/service"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
-	"net/http"
 )
 
 func main() {

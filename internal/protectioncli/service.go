@@ -3,11 +3,12 @@ package protectioncli
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/dre-zouhair/interceptor/config"
-	"github.com/rs/zerolog/log"
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/dre-zouhair/interceptor/config"
+	"github.com/rs/zerolog/log"
 )
 
 type protectionCli struct {

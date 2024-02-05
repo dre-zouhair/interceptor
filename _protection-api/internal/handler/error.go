@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"github.com/uptrace/bunrouter"
 	"net/http"
+
+	"github.com/uptrace/bunrouter"
 )
 
 func NotFoundHandler(w http.ResponseWriter, _ bunrouter.Request) error {

@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"github.com/uptrace/bunrouter"
 	"net/http"
 	"slices"
 	"strings"
+
+	"github.com/uptrace/bunrouter"
 )
 
 type authMiddleware struct {

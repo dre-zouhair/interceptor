@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/rs/zerolog/log"
 	"os"
 	"strings"
+
+	"github.com/rs/zerolog/log"
 )
 
 type Config struct {

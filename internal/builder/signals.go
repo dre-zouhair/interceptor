@@ -1,10 +1,11 @@
 package builder
 
 import (
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 	"net/http"
 	"slices"
 	"strings"
+
+	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 )
 
 type ISignalsBuilder interface {
