@@ -1,9 +1,10 @@
 package processor
 
 import (
-	configuration "github.com/dre-zouhair/interceptor/config"
 	"net/http"
 	"time"
+
+	configuration "github.com/dre-zouhair/interceptor/config"
 
 	"github.com/dre-zouhair/interceptor/internal/analyser"
 	"github.com/dre-zouhair/interceptor/internal/builder"

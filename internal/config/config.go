@@ -2,8 +2,9 @@ package config
 
 import (
 	"errors"
-	configuration "github.com/dre-zouhair/interceptor/config"
 	"strings"
+
+	configuration "github.com/dre-zouhair/interceptor/config"
 
 	"github.com/dre-zouhair/interceptor/internal/utils"
 	"github.com/rs/zerolog/log"

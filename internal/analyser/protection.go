@@ -3,10 +3,11 @@ package analyser
 import (
 	"bytes"
 	"encoding/json"
-	configuration "github.com/dre-zouhair/interceptor/config"
 	"io"
 	"net/http"
 	"time"
+
+	configuration "github.com/dre-zouhair/interceptor/config"
 
 	"github.com/rs/zerolog/log"
 )

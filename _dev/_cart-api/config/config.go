@@ -1,9 +1,10 @@
 package config
 
 import (
-	interceptorconf "github.com/dre-zouhair/interceptor/config"
 	"os"
 	"strings"
+
+	interceptorconf "github.com/dre-zouhair/interceptor/config"
 
 	"github.com/rs/zerolog/log"
 )

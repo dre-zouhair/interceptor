@@ -1,11 +1,12 @@
 package handler
 
 import (
-	configuration "github.com/dre-zouhair/interceptor/config"
 	"io"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+
+	configuration "github.com/dre-zouhair/interceptor/config"
 
 	"github.com/dre-zouhair/interceptor/internal/processor"
 	"github.com/dre-zouhair/interceptor/internal/utils"

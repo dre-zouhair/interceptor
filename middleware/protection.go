@@ -1,12 +1,13 @@
 package middleware
 
 import (
+	"net/http"
+
 	configuration "github.com/dre-zouhair/interceptor/config"
 	"github.com/dre-zouhair/interceptor/internal/analyser"
 	"github.com/dre-zouhair/interceptor/internal/processor"
 	"github.com/dre-zouhair/interceptor/internal/utils"
 	"github.com/uptrace/bunrouter"
-	"net/http"
 )
 
 type protectionMiddleware struct {

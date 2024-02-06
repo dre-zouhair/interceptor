@@ -1,10 +1,11 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/dre-zouhair/interceptor/cmd/register"
 	configuration "github.com/dre-zouhair/interceptor/config"
 	"github.com/rs/zerolog/log"
-	"net/http"
 )
 
 var appConf *configuration.Config
