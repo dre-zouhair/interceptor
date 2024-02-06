@@ -73,7 +73,7 @@ run-protected-cart-api:
 
 run-standalone-container:
 	@echo "running standalone services"
-	@cd _cart-api && go build -o ./build/app ./cmd/api/main.go
+	@cd _cart-api &&GOOS=linux go build -o ./build/app ./cmd/api/main.go
 	@docker compose -f ./standalone.docker-compose.yml up -d --build
 	@echo "standalone services are up"
 
