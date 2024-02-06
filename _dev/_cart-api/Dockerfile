@@ -8,6 +8,8 @@ RUN go get ./...
 
 RUN go build -o cart-api ./cmd/api
 
-EXPOSE 5050
+ENV PORT=${CARTAPI_SERVER_PORT}
+
+EXPOSE $PORT
 
 CMD ["./cart-api"]

@@ -26,15 +26,8 @@ go tool cover -html coverage.out -o coverage.html
 
 ## Build the api
 
-### Linux
 ```bash
-go build -o ./build/interceptor -tags dev ./cmd/api/main.go
-```
-
-### Windows
-
-```bash
-go build -o .\build\interceptor.exe -tags dev ./cmd/api/main.go
+go build -tags dev ./cmd/api/main.go
 ```
 
 ## Run the api
@@ -42,12 +35,6 @@ go build -o .\build\interceptor.exe -tags dev ./cmd/api/main.go
 To run the api execute the following command :
 ```bash
 go run -tags dev ./...
-```
-
-To ping the api :
-
-```bash
-curl http://localhost:80/api/v1/ping
 ```
 
 ## Build & Run with Docker

@@ -8,7 +8,7 @@ RUN go get ./...
 
 RUN go build -o protection-api ./cmd/api
 
-ENV PORT=5789
+ENV PORT=${PROTECTIONAPI_SERVER_PORT}
 
 EXPOSE $PORT
 

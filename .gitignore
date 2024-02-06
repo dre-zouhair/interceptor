@@ -1,6 +1,12 @@
-/**/coverage.out
-/**/coverage.html
-/**/build/**
+/**/**/coverage.out
+/**/**/coverage.html
+/**/**/build/
+/**/**/build/**
 
 vcs.xml
 /.idea/**
+
+coverage.out
+coverage.html
+/build/
+/build/**

@@ -4,7 +4,7 @@ services:
   cart-api:
     build:
       context: ./_cart-api
-      dockerfile: ./protected.Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "5050:5050"
     environment:
@@ -27,6 +27,29 @@ services:
     environment:
       - PROTECTIONAPI_SERVER_PORT=5789
       - PROTECTIONAPI_TOKENS='token'
+    networks:
+      - interceptor
+
+  interceptor:
+    build:
+      context: ./..
+      dockerfile: Dockerfile
+    depends_on:
+      - protection-api
+      - cart-api
+    ports:
+      - "8080:8080"
+    environment:
+      - INTERCEPTOR_SERVER_PORT=8080
+        # ALLOW|VERIFY|BLOCK
+      - INTERCEPTOR_PROTECTION_FAIL_MODE=allow
+      - INTERCEPTOR_PROTECTION_ENDPOINT=http://protection-api:5789/api/v1/validate
+      - INTERCEPTOR_PROTECTION_TOKEN=token
+      - INTERCEPTOR_FORWARD_ENDPOINT=http://cart-api:5050
+        # separated with ,
+      - INTERCEPTOR_PROTECTION_CUSTOM_HEADERS=
+        # separated with ,
+      - INTERCEPTOR_PROTECTION_CUSTOM_COOKIES=
     networks:
       - interceptor
 
