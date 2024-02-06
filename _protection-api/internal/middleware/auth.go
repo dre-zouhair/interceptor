@@ -13,6 +13,7 @@ type authMiddleware struct {
 }
 
 func NewAuthMiddleware(tokens []string) IAuthMiddleware {
+	// api tokens should be retrieved from a DB
 	return &authMiddleware{
 		apiTokens: tokens,
 	}
