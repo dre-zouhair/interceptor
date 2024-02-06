@@ -11,6 +11,11 @@ type ProcessorConfig struct {
 }
 
 type ProtectionMiddlewareConfig struct {
+	ProtectionAPIConfig ProtectionAPIConfig
+	ProcessorConfig     ProcessorConfig
+}
+
+type Config struct {
 	ServerPort          string
 	ProtectionFailMode  string
 	ProtectionAPIConfig ProtectionAPIConfig

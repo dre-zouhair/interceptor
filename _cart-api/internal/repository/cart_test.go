@@ -31,8 +31,14 @@ func TestCartRepository_Add(t *testing.T) {
 			r := NewCartRepository()
 			if err := r.Add(tt.args.userID, tt.args.item); (err != nil) != tt.wantErr {
 				t.Errorf("Add() error = %v, wantErr %v", err, tt.wantErr)
+				return
 			}
-			assert.Equal(t, 1, len(r.carts[tt.args.userID]))
+			carts, err := r.Get(tt.args.userID)
+			if err != nil {
+				t.Errorf("Add() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			assert.Equal(t, 1, len(carts))
 		})
 	}
 }

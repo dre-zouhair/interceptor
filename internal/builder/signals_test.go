@@ -8,42 +8,6 @@ import (
 	"github.com/dre-zouhair/interceptor/internal/analyser"
 )
 
-func Test_concreteBuilder_BuildCookiesSignals(t *testing.T) {
-	type args struct {
-		cookies []*http.Cookie
-	}
-	tests := []struct {
-		name string
-		args args
-		want analyser.Signals
-	}{
-		{
-			name: "case 1",
-			args: args{
-				cookies: []*http.Cookie{
-					{
-						Name:  "cookie",
-						Value: "cookie",
-					},
-					nil,
-				},
-			},
-			want: analyser.Signals{
-				CookiesNamesLent:  []int{6},
-				CookiesValuesLent: []int{6},
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := NewSignalsBuilder()
-			if got := c.BuildCookiesSignals(tt.args.cookies).GetSignals(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("BuildCookiesSignals() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func Test_concreteBuilder_BuildCustomHeadersSignals(t *testing.T) {
 
 	type args struct {
@@ -87,7 +51,6 @@ func Test_concreteBuilder_BuildHeadersSignals(t *testing.T) {
 	}
 
 	headers := http.Header{}
-	headers.Add("Accept-Language", "Language")
 	headers.Add("User-Agent", "Agent")
 	headers.Add("Referer", "Referer")
 
@@ -102,9 +65,8 @@ func Test_concreteBuilder_BuildHeadersSignals(t *testing.T) {
 				headers: headers,
 			},
 			want: analyser.Signals{
-				AcceptLanguage: "Language",
-				UserAgent:      "Agent",
-				Referer:        "Referer",
+				UserAgent: "Agent",
+				Referer:   "Referer",
 			},
 		},
 	}

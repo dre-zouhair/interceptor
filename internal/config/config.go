@@ -9,14 +9,6 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type Config struct {
-	ServerPort          string
-	ProtectionFailMode  string
-	ProtectionAPIConfig configuration.ProtectionAPIConfig
-	ProcessorConfig     configuration.ProcessorConfig
-	ForwardEndPoint     string
-}
-
 type RawConfig struct {
 	ServerPort          string `mapstructure:"INTERCEPTOR_SERVER_PORT"`
 	ProtectionFailMode  string `mapstructure:"INTERCEPTOR_PROTECTION_FAIL_MODE"`
@@ -27,7 +19,7 @@ type RawConfig struct {
 	CustomHeaderCookies string `mapstructure:"INTERCEPTOR_PROTECTION_CUSTOM_COOKIES"`
 }
 
-func Build(rawConf RawConfig) (*Config, error) {
+func Build(rawConf RawConfig) (*configuration.Config, error) {
 
 	_, err := utils.BuildURL(rawConf.ForwardEndPoint, "", "")
 	if err != nil {
@@ -59,7 +51,7 @@ func Build(rawConf RawConfig) (*Config, error) {
 		CustomHeaderCookies = strings.Split(rawConf.CustomHeaderCookies, ",")
 	}
 
-	return &Config{
+	return &configuration.Config{
 		ServerPort:         rawConf.ServerPort,
 		ProtectionFailMode: failMode,
 		ProtectionAPIConfig: configuration.ProtectionAPIConfig{

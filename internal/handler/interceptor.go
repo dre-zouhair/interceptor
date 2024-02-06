@@ -1,23 +1,23 @@
 package handler
 
 import (
+	configuration "github.com/dre-zouhair/interceptor/config"
 	"io"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 
-	"github.com/dre-zouhair/interceptor/internal/config"
 	"github.com/dre-zouhair/interceptor/internal/processor"
 	"github.com/dre-zouhair/interceptor/internal/utils"
 	"github.com/rs/zerolog/log"
 )
 
 type interceptorHandler struct {
-	conf      config.Config
+	conf      configuration.Config
 	processor processor.IProcessorService
 }
 
-func NewInterceptorHandler(conf config.Config, processor processor.IProcessorService) IInterceptorHandler {
+func NewInterceptorHandler(conf configuration.Config, processor processor.IProcessorService) IInterceptorHandler {
 	return &interceptorHandler{
 		conf:      conf,
 		processor: processor,

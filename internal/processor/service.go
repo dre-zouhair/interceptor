@@ -30,7 +30,6 @@ func (s processorService) Process(r *http.Request) (*analyser.ValidationResponse
 		BuildHeadersSignals(r.Header).
 		BuildRealRemoteAddr(r.Header, r.RemoteAddr).
 		BuildCustomHeadersSignals(r.Header, s.conf.CustomHeaderSignals).
-		BuildCookiesSignals(r.Cookies()).
 		BuildCustomCookiesSignals(r.Cookies(), s.conf.CustomHeaderCookies).
 		GetSignals()
 

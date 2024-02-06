@@ -28,20 +28,17 @@ type IProtectionCli interface {
 }
 
 type Signals struct {
-	ContentLength     int64             `json:"contentLength" validate:""`
-	AcceptLanguage    string            `json:"acceptLanguage" validate:""`
-	UserAgent         string            `json:"userAgent" validate:"required"`
-	RealAddress       string            `json:"rAddress" validate:"required"`
-	ProxyAddress      []string          `json:"proxy" validate:""`
-	Referer           string            `json:"referer"`
-	CustomHeaders     map[string]string `json:"headers"`
-	CustomCookies     map[string]string `json:"cookies"`
-	CookiesNamesLent  []int             `json:"cookiesNamesLen"`
-	CookiesValuesLent []int             `json:"cookiesValuesLent"`
-	Method            string            `json:"method" validate:"required"`
-	Path              string            `json:"path"`
-	Query             string            `json:"query"`
-	Time              time.Time         `json:"time" validate:"required"`
+	UserAgent     string            `json:"userAgent" validate:"required"`
+	RealAddress   string            `json:"rAddress" validate:"required"`
+	ProxyAddress  []string          `json:"proxy" validate:""`
+	Referer       string            `json:"referer"`
+	CustomHeaders map[string]string `json:"headers"`
+	CustomCookies map[string]string `json:"cookies"`
+	Method        string            `json:"method" validate:"required"`
+	Path          string            `json:"path"`
+	ContentLength int64             `json:"contentLength" validate:""`
+	Query         string            `json:"query"`
+	Time          time.Time         `json:"time" validate:"required"`
 }
 
 func (cli protectionCli) Validate(signals Signals) (*ValidationResponse, error) {

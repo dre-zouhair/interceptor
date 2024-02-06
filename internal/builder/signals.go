@@ -11,7 +11,6 @@ import (
 type ISignalsBuilder interface {
 	BuildHeadersSignals(headers http.Header) ISignalsBuilder
 	BuildCustomHeadersSignals(headers http.Header, keys []string) ISignalsBuilder
-	BuildCookiesSignals(cookies []*http.Cookie) ISignalsBuilder
 	BuildCustomCookiesSignals(cookies []*http.Cookie, keys []string) ISignalsBuilder
 	BuildRealRemoteAddr(headers http.Header, remoteAddr string) ISignalsBuilder
 	GetSignals() analyser.Signals
@@ -26,7 +25,6 @@ func NewSignalsBuilder() ISignalsBuilder {
 }
 
 func (c concreteBuilder) BuildHeadersSignals(headers http.Header) ISignalsBuilder {
-	c.signals.AcceptLanguage = headers.Get("Accept-Language")
 	c.signals.UserAgent = headers.Get("User-Agent")
 	c.signals.Referer = headers.Get("Referer")
 
@@ -48,19 +46,6 @@ func (c concreteBuilder) BuildRealRemoteAddr(headers http.Header, remoteAddr str
 		c.signals.RealAddress = strings.TrimSpace(xForwardedFor[0])
 	} else {
 		c.signals.RealAddress = remoteAddr
-	}
-	return c
-}
-
-func (c concreteBuilder) BuildCookiesSignals(cookies []*http.Cookie) ISignalsBuilder {
-	c.signals.CookiesNamesLent = make([]int, 0)
-	c.signals.CookiesValuesLent = make([]int, 0)
-	for _, cookie := range cookies {
-		if cookie == nil {
-			continue
-		}
-		c.signals.CookiesNamesLent = append(c.signals.CookiesNamesLent, len(cookie.Name))
-		c.signals.CookiesValuesLent = append(c.signals.CookiesValuesLent, len(cookie.Value))
 	}
 	return c
 }
