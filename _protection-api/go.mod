@@ -4,7 +4,6 @@ go 1.21.0
 
 require (
 	github.com/go-playground/validator/v10 v10.17.0
-	github.com/google/uuid v1.6.0
 	github.com/rs/zerolog v1.31.0
 	github.com/uptrace/bunrouter v1.0.21
 )

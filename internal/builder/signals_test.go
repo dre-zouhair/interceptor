@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
+	"github.com/dre-zouhair/interceptor/internal/analyser"
 )
 
 func Test_concreteBuilder_BuildCookiesSignals(t *testing.T) {
@@ -15,7 +15,7 @@ func Test_concreteBuilder_BuildCookiesSignals(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want protectioncli.Signals
+		want analyser.Signals
 	}{
 		{
 			name: "case 1",
@@ -28,7 +28,7 @@ func Test_concreteBuilder_BuildCookiesSignals(t *testing.T) {
 					nil,
 				},
 			},
-			want: protectioncli.Signals{
+			want: analyser.Signals{
 				CookiesNamesLent:  []int{6},
 				CookiesValuesLent: []int{6},
 			},
@@ -57,7 +57,7 @@ func Test_concreteBuilder_BuildCustomHeadersSignals(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want protectioncli.Signals
+		want analyser.Signals
 	}{
 		{
 			"case 1",
@@ -65,7 +65,7 @@ func Test_concreteBuilder_BuildCustomHeadersSignals(t *testing.T) {
 				headers: headers,
 				keys:    []string{"header-key"},
 			},
-			protectioncli.Signals{
+			analyser.Signals{
 				CustomHeaders: map[string]string{"header-key": "value"},
 			},
 		},
@@ -94,14 +94,14 @@ func Test_concreteBuilder_BuildHeadersSignals(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want protectioncli.Signals
+		want analyser.Signals
 	}{
 		{
 			name: "case 1",
 			args: args{
 				headers: headers,
 			},
-			want: protectioncli.Signals{
+			want: analyser.Signals{
 				AcceptLanguage: "Language",
 				UserAgent:      "Agent",
 				Referer:        "Referer",
@@ -132,7 +132,7 @@ func Test_concreteBuilder_BuildRealRemoteAddr(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want protectioncli.Signals
+		want analyser.Signals
 	}{
 		{
 			"case 1",
@@ -140,7 +140,7 @@ func Test_concreteBuilder_BuildRealRemoteAddr(t *testing.T) {
 				headers:    headers,
 				remoteAddr: "",
 			},
-			protectioncli.Signals{
+			analyser.Signals{
 				RealAddress:  "123.4.4.4",
 				ProxyAddress: []string{"123.4.4.5"},
 			},
@@ -151,7 +151,7 @@ func Test_concreteBuilder_BuildRealRemoteAddr(t *testing.T) {
 				headers:    http.Header{},
 				remoteAddr: "123.1.1.4",
 			},
-			protectioncli.Signals{
+			analyser.Signals{
 				RealAddress: "123.1.1.4",
 			},
 		},

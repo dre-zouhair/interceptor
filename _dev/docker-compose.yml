@@ -3,7 +3,7 @@ version: '3'
 services:
   cart-api:
     build:
-      context: ./_cart-api
+      context: ./../_cart-api
       dockerfile: ./Dockerfile
     ports:
       - "5050:5050"
@@ -14,7 +14,7 @@ services:
 
   protection-api:
     build:
-      context: ./_protection-api
+      context: ./../_protection-api
       dockerfile: ./Dockerfile
     ports:
       - "5789:5789"
@@ -26,7 +26,7 @@ services:
 
   interceptor:
     build:
-      context: .
+      context: ./..
       dockerfile: Dockerfile
     depends_on:
       - protection-api

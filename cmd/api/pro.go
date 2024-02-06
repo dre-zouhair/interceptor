@@ -4,10 +4,9 @@
 package main
 
 import (
-	"os"
-
-	"github.com/dre-zouhair/interceptor/config"
+	"github.com/dre-zouhair/interceptor/internal/config"
 	"github.com/rs/zerolog/log"
+	"os"
 )
 
 func init() {

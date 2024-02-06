@@ -5,6 +5,7 @@ go 1.21.0
 require (
 	github.com/rs/zerolog v1.32.0
 	github.com/spf13/viper v1.18.2
+	github.com/uptrace/bunrouter v1.0.21
 )
 
 require (

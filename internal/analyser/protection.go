@@ -1,22 +1,22 @@
-package protectioncli
+package analyser
 
 import (
 	"bytes"
 	"encoding/json"
+	configuration "github.com/dre-zouhair/interceptor/config"
 	"io"
 	"net/http"
 	"time"
 
-	"github.com/dre-zouhair/interceptor/config"
 	"github.com/rs/zerolog/log"
 )
 
 type protectionCli struct {
-	conf   config.Config
+	conf   configuration.ProtectionAPIConfig
 	client *http.Client
 }
 
-func NewProtectionCli(conf config.Config) IProtectionCli {
+func NewProtectionCli(conf configuration.ProtectionAPIConfig) IProtectionCli {
 	return &protectionCli{
 		conf:   conf,
 		client: &http.Client{},

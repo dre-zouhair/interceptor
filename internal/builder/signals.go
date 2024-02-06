@@ -5,7 +5,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
+	"github.com/dre-zouhair/interceptor/internal/analyser"
 )
 
 type ISignalsBuilder interface {
@@ -14,11 +14,11 @@ type ISignalsBuilder interface {
 	BuildCookiesSignals(cookies []*http.Cookie) ISignalsBuilder
 	BuildCustomCookiesSignals(cookies []*http.Cookie, keys []string) ISignalsBuilder
 	BuildRealRemoteAddr(headers http.Header, remoteAddr string) ISignalsBuilder
-	GetSignals() protectioncli.Signals
+	GetSignals() analyser.Signals
 }
 
 type concreteBuilder struct {
-	signals protectioncli.Signals
+	signals analyser.Signals
 }
 
 func NewSignalsBuilder() ISignalsBuilder {
@@ -78,6 +78,6 @@ func (c concreteBuilder) BuildCustomCookiesSignals(cookies []*http.Cookie, keys 
 	return c
 }
 
-func (c concreteBuilder) GetSignals() protectioncli.Signals {
+func (c concreteBuilder) GetSignals() analyser.Signals {
 	return c.signals
 }

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/dre-zouhair/interceptor/config"
+	"github.com/dre-zouhair/interceptor/internal/analyser"
+	"github.com/dre-zouhair/interceptor/internal/config"
 	"github.com/dre-zouhair/interceptor/internal/handler"
 	"github.com/dre-zouhair/interceptor/internal/processor"
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 	"github.com/rs/zerolog/log"
 	"net/http"
 )
@@ -17,8 +17,8 @@ func main() {
 		log.Error().Msg("missing app configuration")
 	}
 
-	protectionCLi := protectioncli.NewProtectionCli(*appConf)
-	processorService := processor.NewProcessorService(*appConf, protectionCLi)
+	protectionCli := analyser.NewProtectionCli(appConf.ProtectionAPIConfig)
+	processorService := processor.NewProcessorService(appConf.ProcessorConfig, protectionCli)
 
 	h := handler.NewInterceptorHandler(*appConf, processorService)
 

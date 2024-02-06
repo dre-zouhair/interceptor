@@ -1,20 +1,20 @@
 package processor
 
 import (
+	configuration "github.com/dre-zouhair/interceptor/config"
 	"net/http"
 	"time"
 
-	"github.com/dre-zouhair/interceptor/config"
+	"github.com/dre-zouhair/interceptor/internal/analyser"
 	"github.com/dre-zouhair/interceptor/internal/builder"
-	"github.com/dre-zouhair/interceptor/internal/protectioncli"
 )
 
 type processorService struct {
-	conf          config.Config
-	protectionCli protectioncli.IProtectionCli
+	conf          configuration.ProcessorConfig
+	protectionCli analyser.IProtectionCli
 }
 
-func NewProcessorService(conf config.Config, cli protectioncli.IProtectionCli) IProcessorService {
+func NewProcessorService(conf configuration.ProcessorConfig, cli analyser.IProtectionCli) IProcessorService {
 	return &processorService{
 		conf:          conf,
 		protectionCli: cli,
@@ -22,10 +22,10 @@ func NewProcessorService(conf config.Config, cli protectioncli.IProtectionCli) I
 }
 
 type IProcessorService interface {
-	Process(r *http.Request) (*protectioncli.ValidationResponse, error)
+	Process(r *http.Request) (*analyser.ValidationResponse, error)
 }
 
-func (s processorService) Process(r *http.Request) (*protectioncli.ValidationResponse, error) {
+func (s processorService) Process(r *http.Request) (*analyser.ValidationResponse, error) {
 	signals := builder.NewSignalsBuilder().
 		BuildHeadersSignals(r.Header).
 		BuildRealRemoteAddr(r.Header, r.RemoteAddr).
