@@ -22,7 +22,7 @@ func main() {
 
 	h := handler.NewInterceptorHandler(*appConf, processorService)
 
-	http.HandleFunc("/", h.HandleAllRequests)
+	http.HandleFunc("/", h.ForwardAllRequests)
 
 	err := http.ListenAndServe(":"+appConf.ServerPort, nil)
 

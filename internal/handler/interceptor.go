@@ -25,13 +25,25 @@ func NewInterceptorHandler(conf config.Config, processor processor.IProcessorSer
 }
 
 type IInterceptorHandler interface {
-	HandleAllRequests(w http.ResponseWriter, r *http.Request)
+	ForwardAllRequests(w http.ResponseWriter, r *http.Request)
+	ProxyAllRequests(w http.ResponseWriter, r *http.Request)
 }
 
-func (h interceptorHandler) HandleAllRequests(w http.ResponseWriter, r *http.Request) {
+func (h interceptorHandler) ForwardAllRequests(w http.ResponseWriter, r *http.Request) {
+	h.processRequests(w, r, h.forwardRequest)
+}
+
+func (h interceptorHandler) ProxyAllRequests(w http.ResponseWriter, r *http.Request) {
+	h.processRequests(w, r, h.proxyRequest)
+}
+
+type returnPolicy func(w http.ResponseWriter, r *http.Request)
+
+func (h interceptorHandler) processRequests(w http.ResponseWriter, r *http.Request, performReturn returnPolicy) {
 	action := utils.ALLOW_ACCESS
 
 	report, err := h.processor.Process(r)
+
 	log.Debug().Interface("report", report).Msg("report result")
 
 	if err != nil {
@@ -42,9 +54,9 @@ func (h interceptorHandler) HandleAllRequests(w http.ResponseWriter, r *http.Req
 	}
 
 	if action == utils.ALLOW_ACCESS {
-		h.forwardRequest(w, r)
+		performReturn(w, r)
 	} else if report.Action == utils.VERIFY_ACCESS {
-		h.forwardRequest(w, r)
+		performReturn(w, r)
 	} else {
 		http.Error(w, "Request from bot denied", http.StatusForbidden)
 	}
