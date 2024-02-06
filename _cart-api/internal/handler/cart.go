@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dre-zouhair/modules/cart-api/internal/repository"
-	"github.com/dre-zouhair/modules/cart-api/internal/service"
+	"dre-zouhair/modules/cart-api/internal/repository"
+	"dre-zouhair/modules/cart-api/internal/service"
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
@@ -25,6 +25,7 @@ func NewCartHandler(cartService service.ICartService) ICartHandler {
 
 type ICartHandler interface {
 	AddItemHandler(w http.ResponseWriter, req bunrouter.Request) error
+	GetUserItemsHandler(w http.ResponseWriter, req bunrouter.Request) error
 }
 
 func (h cartHandler) AddItemHandler(w http.ResponseWriter, req bunrouter.Request) error {
@@ -67,4 +68,23 @@ func (h cartHandler) AddItemHandler(w http.ResponseWriter, req bunrouter.Request
 	w.WriteHeader(http.StatusCreated)
 
 	return nil
+}
+
+func (h cartHandler) GetUserItemsHandler(w http.ResponseWriter, req bunrouter.Request) error {
+
+	userID, err := req.Cookie("user-id")
+
+	if err != nil || len(userID.Value) == 0 {
+		http.Error(w, "invalid request", http.StatusBadRequest)
+		return nil
+	}
+
+	items, err := h.cartService.Get(userID.Value)
+
+	if err != nil {
+		http.Error(w, "invalid request", http.StatusNotFound)
+		return nil
+	}
+
+	return bunrouter.JSON(w, items)
 }

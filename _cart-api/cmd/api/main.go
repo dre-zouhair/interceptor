@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/dre-zouhair/modules/cart-api/config"
-	"github.com/dre-zouhair/modules/cart-api/internal/handler"
-	"github.com/dre-zouhair/modules/cart-api/internal/repository"
-	"github.com/dre-zouhair/modules/cart-api/internal/service"
+	"dre-zouhair/modules/cart-api/config"
+	"dre-zouhair/modules/cart-api/internal/handler"
+	"dre-zouhair/modules/cart-api/internal/repository"
+	"dre-zouhair/modules/cart-api/internal/service"
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
 )
@@ -35,7 +35,9 @@ func main() {
 				"Referer": req.Referer(),
 			})
 		})
+
 		g.POST("/cart", cartHandler.AddItemHandler)
+		g.GET("/cart", cartHandler.GetUserItemsHandler)
 	})
 
 	err = http.ListenAndServe(":"+appConf.ServerPort, router)

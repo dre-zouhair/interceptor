@@ -1,4 +1,4 @@
-module github.com/dre-zouhair/modules/cart-api
+module dre-zouhair/modules/cart-api
 
 go 1.21.0
 
