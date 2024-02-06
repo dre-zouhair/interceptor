@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  cart-api:
+    build:
+      context: ./_cart-api
+      dockerfile: ./Dockerfile
+    ports:
+      - "5050:5050"
+    depends_on:
+      - protection-api
+    environment:
+      - CARTAPI_SERVER_PORT=5050
+      - INTERCEPTOR_INTERCEPTION_PATH=/
+      - INTERCEPTOR_PROTECTION_ENDPOINT=http://protection-api:5789/api/v1/validate
+      - INTERCEPTOR_PROTECTION_TOKEN='token'
+        # separated with ,
+      - INTERCEPTOR_PROTECTION_CUSTOM_HEADERS=
+        # separated with ,
+      - INTERCEPTOR_PROTECTION_CUSTOM_COOKIES=
+    networks:
+      - interceptor
+
+  protection-api:
+    build:
+      context: ./_protection-api
+      dockerfile: ./Dockerfile
+    ports:
+      - "5789:5789"
+    environment:
+      - PROTECTIONAPI_SERVER_PORT=5789
+      - PROTECTIONAPI_TOKENS='token'
+    networks:
+      - interceptor
+
+networks:
+  interceptor:
+    driver: bridge
