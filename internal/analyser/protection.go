@@ -74,7 +74,7 @@ func (cli protectionCli) Validate(signals Signals) (*ValidationResponse, error) 
 
 	var validationResponse ValidationResponse
 	if err := json.NewDecoder(resp.Body).Decode(&validationResponse); err != nil {
-		log.Error().Err(err).Msg("error marshaling validation response")
+		log.Error().Err(err).Interface("body", resp.Body).Msg("error marshaling validation response")
 		return nil, err
 	}
 	return &validationResponse, nil

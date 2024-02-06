@@ -11,8 +11,8 @@ const (
 )
 
 type Signals struct {
-	UserAgent     string            `json:"userAgent" validate:"required"`
-	RealAddress   string            `json:"rAddress" validate:"required"`
+	UserAgent     string            `json:"userAgent" validate:""`
+	RealAddress   string            `json:"rAddress" validate:""`
 	ProxyAddress  []string          `json:"proxy" validate:""`
 	Referer       string            `json:"referer"`
 	CustomHeaders map[string]string `json:"headers"`
@@ -40,7 +40,10 @@ func (s validationService) Validate(signals Signals) (*ValidationResponse, error
 	action, judgment := ALLOW_ACCESS, HUMAN
 
 	if signals.UserAgent == "" {
-		score = score - 1
+		return &ValidationResponse{
+			Judgment: BOT,
+			Action:   BLOCK_ACCESS,
+		}, nil
 	}
 
 	if signals.Referer == "" {

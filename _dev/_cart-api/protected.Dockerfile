@@ -1,15 +1,14 @@
-FROM golang:latest
+FROM alpine:latest
 
-WORKDIR /go/src/app
+WORKDIR /app
 
-COPY . .
+COPY ./build/protected-cart-api  /app/
 
-RUN go get ./...
+RUN chmod +x /app/protected-cart-api
 
-RUN go build -o cart-api ./cmd/protected-api
 
 ENV PORT=${CARTAPI_SERVER_PORT}
 
 EXPOSE $PORT
 
-CMD ["./cart-api"]
+CMD ["./protected-cart-api"]

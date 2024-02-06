@@ -3,13 +3,13 @@ package main
 import (
 	"net/http"
 
-	interceptorconf "github.com/dre-zouhair/interceptor/config"
 	"github.com/dre-zouhair/interceptor/middleware"
 
 	"dre-zouhair/modules/cart-api/config"
 	"dre-zouhair/modules/cart-api/internal/handler"
 	"dre-zouhair/modules/cart-api/internal/repository"
 	"dre-zouhair/modules/cart-api/internal/service"
+
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
 )
@@ -22,8 +22,7 @@ func main() {
 		log.Error().Err(err).Msg("unable to load config")
 	}
 
-	middlewareConf := interceptorconf.ProtectionMiddlewareConfig{}
-	protectionMiddleware := middleware.NewProtectionMiddleware(middlewareConf)
+	protectionMiddleware := middleware.NewProtectionMiddleware(appConf.ProtectionMiddlewareConf)
 
 	router := bunrouter.New(
 		bunrouter.WithNotFoundHandler(handler.NotFoundHandler),

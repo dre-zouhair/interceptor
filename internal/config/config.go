@@ -33,7 +33,7 @@ func Build(rawConf RawConfig) (*configuration.Config, error) {
 	}
 
 	if rawConf.ProtectionToken == "" {
-		log.Warn().Msg("missing env variable, using default value")
+		log.Warn().Msg("missing token env variable")
 	}
 
 	failMode := utils.ALLOW_ACCESS

@@ -4,6 +4,8 @@
 package main
 
 import (
+	"github.com/dre-zouhair/interceptor/internal/config"
+
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 )

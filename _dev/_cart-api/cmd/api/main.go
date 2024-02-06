@@ -7,6 +7,7 @@ import (
 	"dre-zouhair/modules/cart-api/internal/handler"
 	"dre-zouhair/modules/cart-api/internal/repository"
 	"dre-zouhair/modules/cart-api/internal/service"
+
 	"github.com/rs/zerolog/log"
 	"github.com/uptrace/bunrouter"
 )

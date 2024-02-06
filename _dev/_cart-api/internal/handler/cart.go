@@ -7,6 +7,7 @@ import (
 
 	"dre-zouhair/modules/cart-api/internal/repository"
 	"dre-zouhair/modules/cart-api/internal/service"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
