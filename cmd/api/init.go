@@ -14,6 +14,7 @@ func init() {
 
 	conf, err := config.Build(config.RawConfig{
 		ServerPort:          os.Getenv("INTERCEPTOR_SERVER_PORT"),
+		InterceptionPath:    os.Getenv("INTERCEPTOR_INTERCEPTION_PATH=/"),
 		ProtectionEndpoint:  os.Getenv("INTERCEPTOR_PROTECTION_ENDPOINT"),
 		ProtectionToken:     os.Getenv("INTERCEPTOR_PROTECTION_TOKEN"),
 		ForwardEndPoint:     os.Getenv("INTERCEPTOR_FORWARD_ENDPOINT"),

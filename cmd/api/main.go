@@ -17,7 +17,7 @@ func main() {
 		return
 	}
 
-	register.Interceptor("/", *appConf)
+	register.Interceptor(appConf.InterceptionPath, *appConf)
 
 	err := http.ListenAndServe(":"+appConf.ServerPort, nil)
 

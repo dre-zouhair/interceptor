@@ -8,23 +8,47 @@ This is an API for simulating a basic protection API
 
 ## Unit tests
 
-## Build & Run
+```bahs
+make tests
+```
+
+## Build & Run 
+
+Download dependencies
+
+```bash
+cd _dev && make deps
+```
+
+Then run the protection api :
+
+```bash
+cd _dev && make run-protection-api
+```
+
+Then run the cart api :
+
+```bash
+cd _dev && make run-protected-cart-api
+```
+
+Then run the web app :
+
+```bash
+cd _dev && make run-web-app
+```
 
 ## Build & Run with Docker
 
-### Build a docker image
+**This is not working because the repo is private**
 
 ```bash
-docker build -t protetcion-api .
+make run-container
 ```
-
-### Run api container
+to clean the services
 
 ```bash
-docker run -e PORT=5789 -p 5789:5789 protetcion-api
+make clean-container
 ```
-
-> **_NOTE:_**  if you have changed the server port, be sure to update the docker run command
-
 
 

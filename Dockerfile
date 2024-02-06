@@ -8,7 +8,7 @@ RUN go get ./...
 
 RUN go build -o interceptor ./cmd/api
 
-ENV PORT=7777
+ENV PORT=${INTERCEPTOR_SERVER_PORT}
 
 EXPOSE $PORT
 

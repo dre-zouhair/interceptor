@@ -12,6 +12,7 @@ import (
 
 type RawConfig struct {
 	ServerPort          string `mapstructure:"INTERCEPTOR_SERVER_PORT"`
+	InterceptionPath    string `mapstructure:"INTERCEPTOR_INTERCEPTION_PATH"`
 	ProtectionFailMode  string `mapstructure:"INTERCEPTOR_PROTECTION_FAIL_MODE"`
 	ProtectionEndpoint  string `mapstructure:"INTERCEPTOR_PROTECTION_ENDPOINT"`
 	ProtectionToken     string `mapstructure:"INTERCEPTOR_PROTECTION_TOKEN"`

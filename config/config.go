@@ -17,6 +17,7 @@ type ProtectionMiddlewareConfig struct {
 
 type Config struct {
 	ServerPort          string
+	InterceptionPath    string
 	ProtectionFailMode  string
 	ProtectionAPIConfig ProtectionAPIConfig
 	ProcessorConfig     ProcessorConfig
