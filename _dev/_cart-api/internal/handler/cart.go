@@ -66,9 +66,14 @@ func (h cartHandler) AddItemHandler(w http.ResponseWriter, req bunrouter.Request
 		return nil
 	}
 
-	w.WriteHeader(http.StatusCreated)
+	items, err := h.cartService.Get(userID.Value)
 
-	return nil
+	if err != nil {
+		http.Error(w, "invalid request", http.StatusNotFound)
+		return nil
+	}
+
+	return bunrouter.JSON(w, items)
 }
 
 func (h cartHandler) GetUserItemsHandler(w http.ResponseWriter, req bunrouter.Request) error {

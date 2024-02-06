@@ -36,6 +36,7 @@ func (s processorService) Process(r *http.Request) (*analyser.ValidationResponse
 
 	signals.ContentLength = r.ContentLength
 	signals.Method = r.Method
+	signals.Query = r.URL.RawQuery
 	signals.Time = time.Now()
 
 	return s.protectionCli.Validate(signals)

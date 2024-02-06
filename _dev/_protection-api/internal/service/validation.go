@@ -1,6 +1,8 @@
 package service
 
-import "time"
+import (
+	"time"
+)
 
 const (
 	ALLOW_ACCESS  = "ALLOW"
@@ -52,6 +54,13 @@ func (s validationService) Validate(signals Signals) (*ValidationResponse, error
 
 	if signals.ProxyAddress != nil && len(signals.ProxyAddress) > 0 {
 		score = score - 1
+	}
+
+	if signals.Query != "" {
+		return &ValidationResponse{
+			Judgment: BOT,
+			Action:   BLOCK_ACCESS,
+		}, nil
 	}
 
 	if score < -2 {

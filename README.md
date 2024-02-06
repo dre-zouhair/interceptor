@@ -151,7 +151,7 @@ Then run the protection api :
 make run-protection-api
 ```
 
-Then run the cart api (interceptor is used as a middleware)
+Then run the cart api (_**interceptor**_ is used as a middleware)
 
 ```bash
 make run-protected-cart-api
@@ -173,4 +173,9 @@ make run-dev
 make clean-dev
 ```
 
+Then you can visit the web app on :
+
+```makefile
+http://localhost:3000/index.html
+```
 

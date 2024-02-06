@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Page</title>
+</head>
+<body>
+
+<h1>Web App</h1>
+
+<button onclick="ping()">Ping</button>
+<div id="pingResults"></div>
+
+
+<div>
+    <label for="inputData">Item ID: (use block_access for fail)</label>
+    <input type="text" id="inputData" name="inputData" required>
+    <button  onclick="addItem()" >Add Item</button>
+</div>
+
+<!--<button onclick="loadItems()" id="lodItems">Load Items</button>-->
+
+<div id="result"></div>
+
+<script>
+    const endpoint = 'http://localhost:5050';
+
+    function ping() {
+        fetch(endpoint + "/api/v1/ping")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('pingResults').innerHTML = `<p>Result: ${JSON.stringify(data)}</p>`;
+            })
+            .catch(error => {
+                document.getElementById('pingResults').innerHTML = `<p>Error: ${error.message}</p>`;
+            });
+    }
+
+    function addItem() {
+        const inputData = document.getElementById('inputData').value;
+
+        let path = "/api/v1/cart"
+
+        if (inputData == "block_access") {
+            path = "/api/v1/cart?test=fail"
+        }
+
+        fetch(endpoint + path , {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: inputData }),
+        }).
+        then(response => response.json()).
+        then(data => {
+            document.getElementById('result').innerHTML = `<p>Result: ${JSON.stringify(data)}</p>`;
+        }).
+        catch(error => {
+            document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`;
+        });
+
+    }
+    
+    function loadItems() {
+        fetch(endpoint + "/api/v1/cart")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = `<p>Result: ${data}</p>`;
+            }).catch(error => {
+            document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`;
+        });
+    }
+
+</script>
+
+</body>
+</html>

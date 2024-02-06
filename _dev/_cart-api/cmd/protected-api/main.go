@@ -46,7 +46,8 @@ func main() {
 		g.GET("/cart", cartHandler.GetUserItemsHandler)
 	})
 
-	err = http.ListenAndServe(":"+appConf.ServerPort, router)
+	err = http.ListenAndServe(":"+appConf.ServerPort, handler.CORSHandler{Next: http.Handler(router)})
+
 	if err != nil {
 		log.Error().Err(err).Msg("unable to start server")
 	}

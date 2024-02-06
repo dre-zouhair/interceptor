@@ -7,8 +7,6 @@ services:
       dockerfile: ./protected.Dockerfile
     ports:
       - "5050:5050"
-    depends_on:
-      - protection-api
     environment:
       - CARTAPI_SERVER_PORT=5050
       - INTERCEPTOR_PROTECTION_ENDPOINT=http://protection-api:5789/api/v1/validate
@@ -17,8 +15,23 @@ services:
       - INTERCEPTOR_PROTECTION_CUSTOM_HEADERS=
         # separated with ,
       - INTERCEPTOR_PROTECTION_CUSTOM_COOKIES=
+    depends_on:
+      - protection-api
     networks:
       - interceptor
+
+  web-app:
+    image: web-app
+    build:
+      context: ./_web-app
+    ports:
+      - "3000:80"
+    environment:
+      - PORT=80
+    networks:
+      - interceptor
+    depends_on:
+      - cart-api
 
   protection-api:
     build:

@@ -17,25 +17,25 @@ make tests
 Download dependencies
 
 ```bash
-cd _dev && make deps
+make deps
 ```
 
 Then run the protection api :
 
 ```bash
-cd _dev && make run-protection-api
+make run-protection-api
 ```
 
 Then run the cart api :
 
 ```bash
-cd _dev && make run-protected-cart-api
+make run-protected-cart-api
 ```
 
 Then run the web app :
 
 ```bash
-cd _dev && make run-web-app
+make run-web-app
 ```
 
 ## Build & Run with Docker
