@@ -6,11 +6,11 @@ const (
 	ALLOW_ACCESS  = "ALLOW"
 	VERIFY_ACCESS = "VERIFY"
 	BLOCK_ACCESS  = "BLOCK"
+	BOT           = "bot"
+	HUMAN         = "human"
 )
 
 type Signals struct {
-	ContentLength     int64             `json:"contentLength" validate:""`
-	AcceptLanguage    string            `json:"acceptLanguage" validate:""`
 	UserAgent         string            `json:"userAgent" validate:"required"`
 	RealAddress       string            `json:"rAddress" validate:"required"`
 	ProxyAddress      []string          `json:"proxy" validate:""`
@@ -21,6 +21,7 @@ type Signals struct {
 	CookiesValuesLent []int             `json:"cookiesValuesLent"`
 	Method            string            `json:"method" validate:"required"`
 	Path              string            `json:"path"`
+	ContentLength     int64             `json:"contentLength" validate:""`
 	Query             string            `json:"query"`
 	Time              time.Time         `json:"time" validate:"required"`
 }
@@ -38,13 +39,13 @@ type IValidationService interface {
 
 func (s validationService) Validate(signals Signals) (*ValidationResponse, error) {
 	score := 0
-	action, judgment := ALLOW_ACCESS, "human"
+	action, judgment := ALLOW_ACCESS, HUMAN
 
 	if signals.UserAgent == "" {
 		score = score - 1
 	}
 
-	if signals.AcceptLanguage == "" {
+	if signals.Referer == "" {
 		score = score - 1
 	}
 
@@ -52,12 +53,12 @@ func (s validationService) Validate(signals Signals) (*ValidationResponse, error
 		score = score - 1
 	}
 
-	if score < -1 {
-		action, judgment = BLOCK_ACCESS, "bot"
+	if score < -2 {
+		action, judgment = BLOCK_ACCESS, BOT
 	}
 
 	if score < 0 {
-		action, judgment = VERIFY_ACCESS, "bot"
+		action, judgment = VERIFY_ACCESS, BOT
 	}
 
 	return &ValidationResponse{
