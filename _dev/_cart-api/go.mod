@@ -3,7 +3,7 @@ module dre-zouhair/modules/cart-api
 go 1.21.0
 
 require (
-	github.com/dre-zouhair/interceptor v1.0.0
+	github.com/dre-zouhair/interceptor v1.2.0
 	github.com/go-playground/validator/v10 v10.17.0
 	github.com/google/uuid v1.6.0
 	github.com/rs/zerolog v1.32.0

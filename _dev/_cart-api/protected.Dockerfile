@@ -12,3 +12,4 @@ ENV PORT=${CARTAPI_SERVER_PORT}
 EXPOSE $PORT
 
 CMD ["./protected-cart-api"]
+

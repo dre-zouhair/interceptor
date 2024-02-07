@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/rs/zerolog/log"
 	"time"
 )
 
@@ -40,6 +41,15 @@ type IValidationService interface {
 func (s validationService) Validate(signals Signals) (*ValidationResponse, error) {
 	score := 0
 	action, judgment := ALLOW_ACCESS, HUMAN
+
+	log.Error().Interface("signals", signals).Msg("request query")
+
+	if signals.ContentLength == 21 {
+		return &ValidationResponse{
+			Judgment: BOT,
+			Action:   BLOCK_ACCESS,
+		}, nil
+	}
 
 	if signals.UserAgent == "" {
 		return &ValidationResponse{
