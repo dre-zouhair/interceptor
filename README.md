@@ -7,11 +7,11 @@ _**interceptor**_, is a server-side component that intercepts incoming HTTP requ
 - go >= 1.21.0
 - docker >= 20.10.23
 
-**To play with interceptor : [Check Test With Docker section](#with-Docker)**
+**To play with interceptor: [Check Test With Docker section](#with-Docker)**
 
-> **_NOTE:_**  The repo is private so if `go get github.com/dre-zouhair/interceptor` fail, you should update the `GOPRIVATE` Environment variable. (verify `GOPRIVATE` old value before running `go env -w GOPRIVATE=github.com/dre-zouhair/interceptor`).
+> **_NOTE:_** The repo is private so if `go get github.com/dre-zouhair/interceptor` fail, you should update the `GOPRIVATE` Environment variable. (verify `GOPRIVATE` old value before running `go env -w GOPRIVATE=github.com/dre-zouhair/interceptor`).
 
-> **_NOTE:_**  The repo is private, so building a docker image for a project that has `github.com/dre-zouhair/interceptor` as a dependency is complicated.
+> **_NOTE:_** The repo is private, so building a docker image for a project that has `github.com/dre-zouhair/interceptor` as a dependency is complicated.
 
 ## How to use it?
 
