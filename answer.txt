@@ -1,0 +1,24 @@
+Q1.
+
+IP Address:
+
+To check that the IP address is not blacklisted and to analyse its reputation, geolocation and frequency of requests.
+It is also more sensitive if the request goes through a proxy by examining the X-Forwarded-For headers.
+
+User-Agent:
+
+To check for unusual or outdated user-agents.
+
+HTTP Headers & Cookies :
+
+Verify and Analyze the existence of specific headers/cookies. A bot may not have all the required headers/cookies. or may use random values
+
+Path & Query :
+    Analyse for Cross-site scripting attacks
+
+Q2. By using an Access Token and an IP whitelist
+
+Q3. The web app should not block the user's navigation, instead it should make him perform a manual verification such as solving a CAPTCHA. This will help prevent blocking the web app due to a false positive and also ensure that some sort of validation is performed.
+
+Q4.
+

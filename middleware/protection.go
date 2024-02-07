@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"context"
+	"github.com/rs/zerolog/log"
 	"net/http"
 
 	configuration "github.com/dre-zouhair/interceptor/config"
@@ -30,7 +32,7 @@ type IProtectionMiddleware interface {
 
 func (m protectionMiddleware) BunProtectionMiddleware(next bunrouter.HandlerFunc) bunrouter.HandlerFunc {
 	return func(w http.ResponseWriter, req bunrouter.Request) error {
-		action := m.processRequest(req.Request)
+		action := m.processRequest(req.Request.Clone(context.Background()))
 
 		if action == utils.BLOCK_ACCESS {
 			http.Error(w, "Request from bot denied", http.StatusForbidden)
@@ -67,6 +69,9 @@ func (m protectionMiddleware) processRequest(r *http.Request) string {
 
 	if err == nil {
 		action = report.Action
+	} else {
+		log.Error().Err(err).Msg("error processing request")
 	}
+
 	return action
 }

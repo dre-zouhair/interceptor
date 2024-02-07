@@ -53,9 +53,18 @@
             },
             body: JSON.stringify({ id: inputData }),
         }).
-        then(response => response.json()).
-        then(data => {
-            document.getElementById('result').innerHTML = `<p>Result: ${JSON.stringify(data)}</p>`;
+        then(response =>
+        {
+            if (response.ok) {
+                return response.json().then(data => {
+                    document.getElementById('result').innerHTML = `<p>Result: ${JSON.stringify(data)}</p>`;
+                });
+            } else {
+                return response.text().then(text => {
+                    document.getElementById('result').innerHTML = `<p>${text} Error with status: ${response.status}</p>`;
+                    console.error('Error:', response.statusText, text);
+                });
+            }
         }).
         catch(error => {
             document.getElementById('result').innerHTML = `<p>Error: ${error.message}</p>`;
