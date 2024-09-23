@@ -41,7 +41,7 @@ services:
       - "5789:5789"
     environment:
       - PROTECTIONAPI_SERVER_PORT=5789
-      - PROTECTIONAPI_TOKENS='token'
+      - PROTECTIONAPI_TOKENS=''
     networks:
       - interceptor
 
