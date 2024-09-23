@@ -10,3 +10,4 @@ coverage.out
 coverage.html
 /build/
 /build/**
+/answer.txt
